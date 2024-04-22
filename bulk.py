@@ -1,18 +1,23 @@
 import pandas as pd
 import pyodbc
 import os
-
+ 
+    
 def infer_sql_datatype(data_type):
     if 'int' in str(data_type):
-        return 'VARCHAR(MAX)'
+        return 'INT'
     elif 'float' in str(data_type):
-        return 'VARCHAR(MAX)'
+        return 'FLOAT'
     elif 'datetime' in str(data_type):
-        return 'VARCHAR(MAX)'
+        return 'DATETIME'
     elif 'object' in str(data_type):
-        return 'VARCHAR(MAX)' 
+        if 'currency' in str(data_type):  # Check for currency data type
+            return 'MONEY'  
+        else:
+            return 'VARCHAR(MAX)'
     else:
-        return 'VARCHAR(1000)' 
+        return 'VARCHAR(1000)'
+
 
 csv_dir = r'C:\Users\ezesu\OneDrive\Desktop\upload_excel_SQL_server\data'
 
