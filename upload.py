@@ -34,7 +34,7 @@ for excel_file in csv_files:
 
     column_data_types = {col: infer_sql_datatype(df[col].dtype) for col in df.columns}
 
-    table_name = os.path.splitext(excel_file)[0] 
+    table_name = "[" + os.path.splitext(excel_file)[0] + "]" 
     
     create_table_query = f"CREATE TABLE {table_name} ("
 
@@ -61,4 +61,3 @@ for excel_file in csv_files:
 
 cursor.close()
 conn.close()
-
